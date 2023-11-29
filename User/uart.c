@@ -27,12 +27,26 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
         uint8_t re_buf = uartPushRxBuff[0];
         if (re_buf >= '0' && re_buf <= '9') {
             pushUartRxTempData = pushUartRxTempData * 10 + re_buf - '0';
-        } else if (re_buf == ' ') {
-            if (pushUartRxTempData == 0 || pushUartRxTempData == 1 || pushUartRxTempData == 2)
-                P_g030 = pushUartRxTempData;
-            pushUartRxTempData = 0;
-        } else if(re_buf == '\n') {
-            I = pushUartRxTempData;
+        }
+        else{
+            switch (re_buf) {
+                case 'P':
+                    if (pushUartRxTempData == 0 || pushUartRxTempData == 1 || pushUartRxTempData == 2)
+                        P_g030 = pushUartRxTempData;
+                    break;
+                case 'I':
+                    I = pushUartRxTempData;
+                    break;
+                case 'Q':
+                    if (pushUartRxTempData == 0 || pushUartRxTempData == 1 || pushUartRxTempData == 2)
+                        Q_g030 = pushUartRxTempData;
+                    break;
+                case 'J':
+                    J = pushUartRxTempData;
+                    break;
+                default:
+                    break;
+            }
             pushUartRxTempData = 0;
         }
         HAL_UART_Receive_IT(&uartPushControl, uartPushRxBuff, 1);
@@ -101,6 +115,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
                 case 'P':
                     P_AGX = uartDebugTempData;
                     break;
+                case 'Q':
+                    Q_AGX = uartDebugTempData;
+                    break;
                 case 'F':
                     F = uartDebugTempData > 0 ? 1 : 0;
                     HAL_GPIO_WritePin(FAN_GPIO_Port, FAN_Pin, F);
@@ -109,7 +126,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
                     uartDebugTempData = 0;
                     uartDebugTempDataPositive = -1;
 
-                    // ½ÓÊÕµ½¸ººÅÊ±²»ÄÜÇå¿Õu1tempPositive£¬ÒªÖ±½Ó·µ»Ø
+                    // ï¿½ï¿½ï¿½Õµï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½u1tempPositiveï¿½ï¿½ÒªÖ±ï¿½Ó·ï¿½ï¿½ï¿½
                     HAL_UART_Receive_IT(&uartDebug, uartDebugRxBuff, 1);
                     return;
 

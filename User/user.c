@@ -103,8 +103,8 @@ void loop() {
         if (t > 10000) {
             t = 10000;
         }
-        sprintf(msg, "@%s %dA %dB %dC %dD %dS %dP %dF %dT %dI %dR %dH %dK %dO\r\n",
-                rubbishType2Str[rubbishType], A, B, C, D, S, P, F, t, I, R, H, K, O);
+        sprintf(msg, "@%s %dA %dB %dC %dD %dS %dP %dQ %dF %dT %dI %dJ %dR %dH %dK %dO\r\n",
+                rubbishType2Str[rubbishType], A, B, C, D, S, P, Q, F, t, I, J, R, H, K, O);
         UART_printf("%s", msg);
         last_print_t = HAL_GetTick();
     }

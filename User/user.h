@@ -21,7 +21,7 @@
 
 #define uartDebug huart1
 #define uartFull huart2
-#define uartAGX huart3
+#define uartUseless huart3
 #define uartPushControl huart4
 #define uartMotorC huart5
 #define uartMotorD huart6
@@ -75,7 +75,8 @@ extern uint8_t lastRubbishChar;
 extern int motorTrunClk;
 
 extern int P, P_g030, P_AGX;
-extern int I;
+extern int I,J;
+extern int Q, Q_g030, Q_AGX;
 
 void updatePStatus();
 
