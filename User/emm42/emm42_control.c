@@ -5,10 +5,10 @@
 #include "emm42.h"
 
 /**
-  * @brief ¿ª¹Øµç»ú
-  * @note ¿ØÖÆ±Õ»·µç»úµÄÊ¹ÄÜ×´Ì¬
-  * @param µç»úĞÅÏ¢½á¹¹Ìå£¬¿ª¹Ø±êÖ¾
-  * @retval ³É¹¦±êÖ¾
+  * @brief å¼€å…³ç”µæœº
+  * @note æ§åˆ¶é—­ç¯ç”µæœºçš„ä½¿èƒ½çŠ¶æ€
+  * @param ç”µæœºä¿¡æ¯ç»“æ„ä½“ï¼Œå¼€å…³æ ‡å¿—
+  * @retval æˆåŠŸæ ‡å¿—
   */
 int emm42Enable(emm42_motor motor, bool enable) {
     command sendCommand;
@@ -20,10 +20,10 @@ int emm42Enable(emm42_motor motor, bool enable) {
 }
 
 /**
-  * @brief ÉèÖÃËÙ¶È
-  * @note ¿ØÖÆ±Õ»·µç»ú°´ÕÕÉè¶¨µÄ·½Ïò¡¢ËÙ¶ÈºÍ¼ÓËÙ¶È½øĞĞÒ»Ö±Ğı×ª£¬¼ÓËÙ¶ÈÊÇÖ¸ÉèÖÃÆô¶¯ºÍÍ£Ö¹Ê±ÇúÏß¼Ó¼õËÙµµÎ»£¬¿ÉÒÔ¼õÉÙµç»úÆô¶¯ºÍÍ£Ö¹µÄÕğ¶¯
-  * @param µç»úĞÅÏ¢½á¹¹Ìå£¬·½Ïò£¬ËÙ¶È£¬¼ÓËÙ¶È
-  * @retval ³É¹¦±êÖ¾
+  * @brief è®¾ç½®é€Ÿåº¦
+  * @note æ§åˆ¶é—­ç¯ç”µæœºæŒ‰ç…§è®¾å®šçš„æ–¹å‘ã€é€Ÿåº¦å’ŒåŠ é€Ÿåº¦è¿›è¡Œä¸€ç›´æ—‹è½¬ï¼ŒåŠ é€Ÿåº¦æ˜¯æŒ‡è®¾ç½®å¯åŠ¨å’Œåœæ­¢æ—¶æ›²çº¿åŠ å‡é€Ÿæ¡£ä½ï¼Œå¯ä»¥å‡å°‘ç”µæœºå¯åŠ¨å’Œåœæ­¢çš„éœ‡åŠ¨
+  * @param ç”µæœºä¿¡æ¯ç»“æ„ä½“ï¼Œæ–¹å‘ï¼Œé€Ÿåº¦ï¼ŒåŠ é€Ÿåº¦
+  * @retval æˆåŠŸæ ‡å¿—
   */
 int emm42SetSpeed(emm42_motor motor, bool direction, uint16_t speed, uint8_t acceleration) {
     command sendCommand;
@@ -47,10 +47,10 @@ int emm42SetSpeed(emm42_motor motor, bool direction, uint16_t speed, uint8_t acc
 }
 
 /**
-  * @brief Î»ÖÃÄ£Ê½¿ØÖÆ
-  * @note ¿ØÖÆ±Õ»·µç»ú°´ÕÕÉè¶¨µÄ·½Ïò¡¢ËÙ¶ÈºÍ¼ÓËÙ¶È½øĞĞÏà¶ÔÎ»ÖÃÔË¶¯
-  * @param µç»úĞÅÏ¢½á¹¹Ìå£¬·½Ïò£¬ËÙ¶È£¬¼ÓËÙ¶È£¬Âö³åÊı
-  * @retval ³É¹¦±êÖ¾
+  * @brief ä½ç½®æ¨¡å¼æ§åˆ¶
+  * @note æ§åˆ¶é—­ç¯ç”µæœºæŒ‰ç…§è®¾å®šçš„æ–¹å‘ã€é€Ÿåº¦å’ŒåŠ é€Ÿåº¦è¿›è¡Œç›¸å¯¹ä½ç½®è¿åŠ¨
+  * @param ç”µæœºä¿¡æ¯ç»“æ„ä½“ï¼Œæ–¹å‘ï¼Œé€Ÿåº¦ï¼ŒåŠ é€Ÿåº¦ï¼Œè„‰å†²æ•°
+  * @retval æˆåŠŸæ ‡å¿—
   */
 int emm42SetPosition(emm42_motor motor, bool direction, uint16_t speed, uint8_t acceleration, uint32_t pulse, bool wait) {
     command sendCommand;

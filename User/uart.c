@@ -126,7 +126,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
                     uartDebugTempData = 0;
                     uartDebugTempDataPositive = -1;
 
-                    // ���յ�����ʱ�������u1tempPositive��Ҫֱ�ӷ���
+                    // 接收到负号时不能清空u1tempPositive，要直接返回
                     HAL_UART_Receive_IT(&uartDebug, uartDebugRxBuff, 1);
                     return;
 

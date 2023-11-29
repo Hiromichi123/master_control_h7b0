@@ -48,10 +48,10 @@ bool ABCDMotorStop(){
 
 
 /**
-  * @brief emm42µç»úÎ»ÖÃ¿ØÖÆ
-  * @note ÆúÓÃ
-  * @param motor£º emm42µç»úĞÅÏ¢½á¹¹Ìå aimEncoder£º Ä¿±ê±àÂëÆ÷µÄÖµ
-  * @retval ³É¹¦±êÖ¾
+  * @brief emm42ç”µæœºä½ç½®æ§åˆ¶
+  * @note å¼ƒç”¨
+  * @param motorï¼š emm42ç”µæœºä¿¡æ¯ç»“æ„ä½“ aimEncoderï¼š ç›®æ ‡ç¼–ç å™¨çš„å€¼
+  * @retval æˆåŠŸæ ‡å¿—
   */
 bool motorTurnToTarget(emm42_motor motor, uint16_t aimEncoder) {
     bool direction;

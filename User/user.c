@@ -38,9 +38,9 @@ void setup() {
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
 
-    Emm_V5_Origin_Trigger_Return(&uartTurnMotor, 1, 0, false); // ���̵������
+    Emm_V5_Origin_Trigger_Return(&uartTurnMotor, 1, 0, false); // 舵盘电机回零
     HAL_Delay(100);
-    Emm_V5_Origin_Trigger_Return(&uartPullingPlateMotor, 2, 2, false); // ������������
+    Emm_V5_Origin_Trigger_Return(&uartPullingPlateMotor, 2, 2, false); // 抽拉板电机回零
 //    P = 2;
     updatePStatus();
 
@@ -98,14 +98,14 @@ void loop() {
     turnMotorControl();
     updatePStatus();
 
-    // OledUpdate(); // ����OLED��ʾ
+    // OledUpdate(); // 更新OLED显示
 
     if (HAL_GetTick() - T1 > 200 && HAL_GetTick() - T2 > 200) {
 //            HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, GPIO_PIN_RESET);
         HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_RESET);
     }
 
-    // ��ʱ���ڴ�ӡ
+    // 定时串口打印
     static uint32_t last_print_t = 0;
     if (isBaseStatusNew() || HAL_GetTick() - last_print_t > 100) {
         char msg[100] = {0};

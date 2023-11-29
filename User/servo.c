@@ -34,12 +34,12 @@ bool servoTrun(uint8_t servoNum, uint16_t angle){
 
 bool downDoorControl(uint8_t open){
     if (!open){
-        // �������Ǳ߲���
+        // 两扇门那边不开
         servoTrun(1,147);
         servoTrun(2,41);
     }
     else{
-        // �������Ǳ߿�
+        // 两扇门那边开
         servoTrun(1,77-5);
         servoTrun(2,111+5);
     }

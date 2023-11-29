@@ -8,10 +8,10 @@
 #endif
 
 /**
-  * @brief ²½½øµç»ú´®¿Ú³õÊ¼»¯
-  * @note Íê³É´®¿ÚºÅ£¬Êı¾İµØÖ·£¬Ğ£Ñé×Ö½ÚÅäÖÃ
-  * @param µç»úĞÅÏ¢½á¹¹ÌåÖ¸Õë£¬´®¿ÚÖ¸Õë£¬Êı¾İµØÖ·×Ö½Ú£¬Ğ£Ñé×Ö½Ú
-  * @retval ³É¹¦±êÖ¾
+  * @brief æ­¥è¿›ç”µæœºä¸²å£åˆå§‹åŒ–
+  * @note å®Œæˆä¸²å£å·ï¼Œæ•°æ®åœ°å€ï¼Œæ ¡éªŒå­—èŠ‚é…ç½®
+  * @param ç”µæœºä¿¡æ¯ç»“æ„ä½“æŒ‡é’ˆï¼Œä¸²å£æŒ‡é’ˆï¼Œæ•°æ®åœ°å€å­—èŠ‚ï¼Œæ ¡éªŒå­—èŠ‚
+  * @retval æˆåŠŸæ ‡å¿—
   */
 int emmMotorUartInit(emm42_motor *motor, UART_HandleTypeDef *uart, UChar address, UChar checkByte){
     motor->uart = uart;
@@ -21,10 +21,10 @@ int emmMotorUartInit(emm42_motor *motor, UART_HandleTypeDef *uart, UChar address
 }
 
 /**
-  * @brief ²½½øµç»ú´®¿ÚÊı¾İ·¢ËÍ
+  * @brief æ­¥è¿›ç”µæœºä¸²å£æ•°æ®å‘é€
   * @note None
-  * @param µç»úĞÅÏ¢½á¹¹Ìå£¬·¢ËÍµÄÖ¸Áî½á¹¹Ìå
-  * @retval ³É¹¦±êÖ¾
+  * @param ç”µæœºä¿¡æ¯ç»“æ„ä½“ï¼Œå‘é€çš„æŒ‡ä»¤ç»“æ„ä½“
+  * @retval æˆåŠŸæ ‡å¿—
   */
 int emmMotorSend(emm42_motor motor, command sendCommand){
     UChar hexData[20] = {0}, *p = hexData;
@@ -57,7 +57,7 @@ int emmMotorSend(emm42_motor motor, command sendCommand){
 #endif
 
 #ifdef TM4
-    //Çå¿Õ»º³åÇø
+    //æ¸…ç©ºç¼“å†²åŒº
     while (UARTCharGetNonBlocking(*motor.uart) != -1);
     SysDelay_ms(10);
 
