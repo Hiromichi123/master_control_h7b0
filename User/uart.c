@@ -69,6 +69,7 @@ void UART_AGX_Handle(uint8_t data) {
                 break;
         }
         value = 0;
+        symbol = 1;
     }
 }
 
