@@ -34,7 +34,7 @@
 extern int mode;
 extern int R, H, K, O;
 extern bool F;
-extern int T;
+extern int T1, T2;
 
 void setup();
 void loop();

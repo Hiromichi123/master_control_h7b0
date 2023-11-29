@@ -59,6 +59,8 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define BEEP_Pin GPIO_PIN_4
 #define BEEP_GPIO_Port GPIOE
+#define FAN_Pin GPIO_PIN_5
+#define FAN_GPIO_Port GPIOE
 #define LED1_Pin GPIO_PIN_1
 #define LED1_GPIO_Port GPIOA
 #define LED2_Pin GPIO_PIN_2
@@ -76,11 +78,12 @@ void Error_Handler(void);
 #define KEY3_Pin GPIO_PIN_9
 #define KEY3_GPIO_Port GPIOD
 #define KEY3_EXTI_IRQn EXTI9_5_IRQn
-#define FAN_Pin GPIO_PIN_12
-#define FAN_GPIO_Port GPIOD
-#define LASER_Pin GPIO_PIN_3
-#define LASER_GPIO_Port GPIOB
-#define LASER_EXTI_IRQn EXTI3_IRQn
+#define LASER1_Pin GPIO_PIN_10
+#define LASER1_GPIO_Port GPIOD
+#define LASER1_EXTI_IRQn EXTI15_10_IRQn
+#define LASER2_Pin GPIO_PIN_11
+#define LASER2_GPIO_Port GPIOD
+#define LASER2_EXTI_IRQn EXTI15_10_IRQn
 
 /* USER CODE BEGIN Private defines */
 

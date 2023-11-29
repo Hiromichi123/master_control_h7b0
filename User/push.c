@@ -12,7 +12,7 @@
 
 int P, P_AGX=-1, P_g030;
 int I,J;
-int Q, Q_g030, Q_AGX;
+int Q, Q_g030, Q_AGX=-1;
 
 bool pullingPlateMotorControl(bool open) {
     if (!open) {
@@ -57,25 +57,25 @@ void updatePStatus() {
 
     if (P != P_last) {
         if (P == 0) {
-            HAL_UART_Transmit_IT(&uartPushControl, (uint8_t *) "@0P", 2);
+            HAL_UART_Transmit(&uartPushControl, (uint8_t *) "@0P", 3, 5);
             pullingPlateMotorControl(false);
         } else if (P == 1) {
-            HAL_UART_Transmit_IT(&uartPushControl, (uint8_t *) "@1P", 2);
+            HAL_UART_Transmit(&uartPushControl, (uint8_t *) "@1P", 3,5);
         } else if (P == 2) {
             pullingPlateMotorControl(true);
-            HAL_UART_Transmit_IT(&uartPushControl, (uint8_t *) "@2P", 2);
+            HAL_UART_Transmit(&uartPushControl, (uint8_t *) "@2P", 3,5);
         }
         P_last = P;
     }
 
     if (Q != Q_last) {
         if (Q == 0) {
-            HAL_UART_Transmit_IT(&uartPushControl, (uint8_t *) "@0Q", 2);
+            HAL_UART_Transmit_IT(&uartPushControl, (uint8_t *) "@0Q", 3);
         } else if (Q == 1) {
-            HAL_UART_Transmit_IT(&uartPushControl, (uint8_t *) "@1Q", 2);
+            HAL_UART_Transmit_IT(&uartPushControl, (uint8_t *) "@1Q", 3);
         } else if (Q == 2) {
-            HAL_UART_Transmit_IT(&uartPushControl, (uint8_t *) "@2Q", 2);
+            HAL_UART_Transmit_IT(&uartPushControl, (uint8_t *) "@2Q", 3);
         }
-        P_last = P;
+        Q_last = Q;
     }
 }

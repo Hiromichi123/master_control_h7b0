@@ -6,15 +6,23 @@
 
 int mode = 0;
 
-int R = 999, H = 999, K = 999, O = 999;
+int R = 99, H = 99, K = 99, O = 99;
 
 bool F = 0;
-int T = 0;
+int T1 = 0, T2=0;
+
+void runDebug(){
+//    HAL_GPIO_WritePin(FAN_GPIO_Port,FAN_Pin,GPIO_PIN_RESET);
+//    HAL_Delay(3000);
+//    HAL_GPIO_WritePin(FAN_GPIO_Port,FAN_Pin,GPIO_PIN_SET);
+//    while (1);
+}
 
 void setup() {
     UART_printf("Program begin!\r\n");
 
     emm42_motor_init();
+    HAL_GPIO_WritePin(FAN_GPIO_Port,FAN_Pin,GPIO_PIN_SET);
 
     HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_SET);
     HAL_Delay(100);
@@ -30,9 +38,9 @@ void setup() {
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
 
-    Emm_V5_Origin_Trigger_Return(&uartTurnMotor, 1, 0, false); // ¶æÅÌµç»ú»ØÁã
+    Emm_V5_Origin_Trigger_Return(&uartTurnMotor, 1, 0, false); // ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     HAL_Delay(100);
-    Emm_V5_Origin_Trigger_Return(&uartPullingPlateMotor, 2, 2, false); // ³éÀ­°åµç»ú»ØÁã
+    Emm_V5_Origin_Trigger_Return(&uartPullingPlateMotor, 2, 2, false); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //    P = 2;
     updatePStatus();
 
@@ -54,6 +62,8 @@ void setup() {
     HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_SET);
     HAL_Delay(500);
     HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_RESET);
+
+    runDebug();
 }
 
 bool isBaseStatusNew() {
@@ -88,23 +98,27 @@ void loop() {
     turnMotorControl();
     updatePStatus();
 
-    // OledUpdate(); // ¸üÐÂOLEDÏÔÊ¾
+    // OledUpdate(); // ï¿½ï¿½ï¿½ï¿½OLEDï¿½ï¿½Ê¾
 
-    if (HAL_GetTick() - T > 200) {
+    if (HAL_GetTick() - T1 > 200 && HAL_GetTick() - T2 > 200) {
 //            HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, GPIO_PIN_RESET);
         HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_RESET);
     }
 
-    // ¶¨Ê±´®¿Ú´òÓ¡
+    // ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ú´ï¿½Ó¡
     static uint32_t last_print_t = 0;
     if (isBaseStatusNew() || HAL_GetTick() - last_print_t > 100) {
         char msg[100] = {0};
-        int t = HAL_GetTick() - T;
-        if (t > 10000) {
-            t = 10000;
+        int t1 = HAL_GetTick() - T1;
+        if (t1 > 10000) {
+            t1 = 10000;
         }
-        sprintf(msg, "@%s %dA %dB %dC %dD %dS %dP %dQ %dF %dT %dI %dJ %dR %dH %dK %dO\r\n",
-                rubbishType2Str[rubbishType], A, B, C, D, S, P, Q, F, t, I, J, R, H, K, O);
+        int t2 = HAL_GetTick() - T2;
+        if (t2 > 10000) {
+            t2 = 10000;
+        }
+        sprintf(msg, "@%s %dA %dB %dC %dD %dS %dP %dQ %dF %dT %dt %dI %dJ %dR %dH %dK %dO\r\n",
+                rubbishType2Str[rubbishType], A, B, C, D, S, P, Q, F, t1, t2, I, J, R, H, K, O);
         UART_printf("%s", msg);
         last_print_t = HAL_GetTick();
     }

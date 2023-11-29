@@ -21,7 +21,7 @@ bool servoTrun(uint8_t servoNum, uint16_t angle){
         TIM1->CCR1 = ccr;
     }
     else if(servoNum == 2){
-        TIM1->CCR3 = ccr;
+        TIM1->CCR2 = ccr;
     }
     else if (servoNum == 4) {
         TIM1->CCR4 = ccr;
@@ -34,12 +34,12 @@ bool servoTrun(uint8_t servoNum, uint16_t angle){
 
 bool downDoorControl(uint8_t open){
     if (!open){
-        // а╫ихцедг╠ъ╡╩©╙
+        // О©╫О©╫О©╫О©╫О©╫О©╫О©╫г╠ъ╡О©╫О©╫О©╫
         servoTrun(1,147);
         servoTrun(2,41);
     }
     else{
-        // а╫ихцедг╠ъ©╙
+        // О©╫О©╫О©╫О©╫О©╫О©╫О©╫г╠ъ©О©╫
         servoTrun(1,77-5);
         servoTrun(2,111+5);
     }

@@ -21,8 +21,12 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
         keyPressTime = HAL_GetTick(); // 记录当前时间
         HAL_TIM_Base_Start_IT(&htim17);
     }
-    if (GPIO_Pin == LASER_Pin) {
-        T = HAL_GetTick();
+    else if (GPIO_Pin == LASER1_Pin) {
+        T1 = HAL_GetTick();
+        HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_SET);
+    }
+    else if (GPIO_Pin == LASER2_Pin) {
+        T2 = HAL_GetTick();
         HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_SET);
     }
 }
