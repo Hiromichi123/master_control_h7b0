@@ -16,12 +16,12 @@ uint32_t keyPressTime = 0;
 #ifdef GPIO_EXTI_FOR_KEY
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
-    if (GPIO_Pin == KEY1_Pin || GPIO_Pin == KEY2_Pin || GPIO_Pin == KEY3_Pin)  //判断中断源
-    {
-        keyPressTime = HAL_GetTick(); // 记录当前时间
-        HAL_TIM_Base_Start_IT(&htim17);
-    }
-    else if (GPIO_Pin == LASER1_Pin) {
+//    if (GPIO_Pin == KEY1_Pin || GPIO_Pin == KEY2_Pin || GPIO_Pin == KEY3_Pin)  //判断中断源
+//    {
+//        keyPressTime = HAL_GetTick(); // 记录当前时间
+//        HAL_TIM_Base_Start_IT(&htim17);
+//    }
+    if (GPIO_Pin == LASER1_Pin) {
         T1 = HAL_GetTick();
         HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_SET);
     }

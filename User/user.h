@@ -19,10 +19,10 @@
 
 #include "Emm_V5.h"
 
-#define uartDebug huart1
-#define uartFull huart2
-#define uartUseless huart3
-#define uartPushControl huart4
+#define uartAGX huart1
+#define uartPushControlP huart2
+#define uartFull huart3
+#define uartPushControlQ huart4
 #define uartMotorC huart5
 #define uartMotorD huart6
 #define uartPullingPlateMotor huart7
@@ -31,10 +31,9 @@
 #define uartMotorA huart10
 
 
-extern int mode;
 extern int R, H, K, O;
 extern bool F;
-extern int T1, T2;
+extern uint32_t T1, T2;
 
 void setup();
 void loop();
@@ -79,5 +78,6 @@ extern int I,J;
 extern int Q, Q_g030, Q_AGX;
 
 void updatePStatus();
+void updateQStatus();
 
 #endif //H7B0_RUBBISH_USER_H

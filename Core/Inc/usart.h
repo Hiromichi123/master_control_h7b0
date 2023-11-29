@@ -70,7 +70,7 @@ void MX_USART10_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
 int UART_printf(const char *fmt, ...);
-extern uint8_t uartDebugRxBuff[10], uartPushRxBuff[10], uartFullRxBuff[10];
+extern uint8_t uart_AGX_rxbuf[1], uart_full_rxbuf[1], uart_pushP_rxbuf[1], uart_pushQ_rxbuf[1];
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus
