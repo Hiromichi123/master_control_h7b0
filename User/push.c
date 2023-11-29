@@ -10,9 +10,9 @@
 
 #include "user.h"
 
-int P, P_g030, P_AGX;
+int P, P_g030, P_AGX=-1;
 int I, J;
-int Q, Q_g030, Q_AGX;
+int Q, Q_g030, Q_AGX=-1;
 
 bool pullingPlateMotorControl(bool open) {
     if (!open) {
@@ -25,15 +25,15 @@ bool pullingPlateMotorControl(bool open) {
 }
 
 void updatePStatus() {
-    static int P_AGX_last, P_g030_last;
+    static int P_g030_last;
 
     bool tell_g030 = false;
 
-    // 若是AGX使得状态改变
-    if (P_AGX != P_AGX_last) {
+    // 若是AGX收到了新数据
+    if (P_AGX != -1) {
         P = P_AGX;
         tell_g030 = true; // 通知g030
-        P_AGX_last = P_AGX;
+        P_AGX = -1;
     }
 
     // 若是g030使得状态改变
@@ -65,15 +65,15 @@ void updatePStatus() {
 
 
 void updateQStatus() {
-    static int Q_AGX_last, Q_g030_last;
+    static int Q_g030_last;
 
     bool tell_g030 = false;
 
-    // 若是AGX使得状态改变
-    if (Q_AGX != Q_AGX_last) {
+    // 若是AGX收到了新数据
+    if (Q_AGX != -1) {
         Q = Q_AGX;
         tell_g030 = true; // 通知g030
-        Q_AGX_last = Q_AGX;
+        Q_AGX = -1;
     }
 
     // 若是g030使得状态改变
