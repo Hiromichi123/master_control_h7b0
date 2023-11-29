@@ -119,8 +119,8 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
                     Q_AGX = uartDebugTempData;
                     break;
                 case 'F':
-                    F = uartDebugTempData > 0 ? 0 : 1;
-                    HAL_GPIO_WritePin(FAN_GPIO_Port, FAN_Pin, F);
+                    F = uartDebugTempData > 0 ? 1 : 0;
+                    HAL_GPIO_WritePin(FAN_GPIO_Port, FAN_Pin, !F);
                     break;
                 case '-':
                     uartDebugTempData = 0;
