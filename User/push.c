@@ -38,11 +38,11 @@ void updatePStatus() {
 
     // 若是g030使得状态改变
     if (P_g030 != P_g030_last) {
-        if (P_g030_last == 1 && P_g030 == 0) { // 自动回抽逻辑
+        if (P == 1 && P_g030 == 0) { // 自动回抽逻辑
             P = 2;
             tell_g030 = true; // 通知g030
             pullingPlateMotorControl(true);
-        } else if (P_g030_last == 2 && P_g030 == 0) { // 自动关闭抽拉门
+        } else if (P == 2 && P_g030 == 0) { // 自动关闭抽拉门
             pullingPlateMotorControl(false);
             P = P_g030;
         } else {
