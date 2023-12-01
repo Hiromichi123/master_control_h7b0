@@ -58,13 +58,17 @@ void setup() {
 bool isBaseStatusNew() {
     static enum RUBBISH_TYPE last_type;
     static int last_A, last_B, last_C, last_D, last_S, last_F, last_P, last_Q;
-    bool rst;
+    static uint32_t last_T1, last_T2;
+
+    bool rst = false;
 
     if (rubbishType != last_type || A != last_A || B != last_B || C != last_C || D != last_D || S != last_S ||
         F != last_F || P != last_P || Q != last_Q) {
         rst = true;
-    } else {
-        rst = false;
+    }
+
+    if (T1 != last_T1 || T2 != last_T2) {
+        rst = true;
     }
 
     last_type = rubbishType;
@@ -76,6 +80,8 @@ bool isBaseStatusNew() {
     last_F = F;
     last_P = P;
     last_Q = Q;
+    last_T1 = T1;
+    last_T2 = T2;
 
     return rst;
 }

@@ -90,23 +90,21 @@ bool upMotorsSpeedControl() {
 //    B = limit(B, 40, true);
 
     if (A != lastA) {
-        lastA = A;
         if (A >= 0) {
-            emm42SetSpeed(motorA, FORWARD, A, 1);
+            emm42SetSpeed(motorA, FORWARD, A, 255);
+        } else {
+            emm42SetSpeed(motorA, BACK, -A, 255);
         }
-        else {
-            emm42SetSpeed(motorA, BACK, -A, 1);
-        }
+        lastA = A;
     }
 
     if (B != lastB) {
-        lastB = B;
         if (B >= 0) {
-            emm42SetSpeed(motorB, FORWARD, B, 1);
+            emm42SetSpeed(motorB, FORWARD, B, 255);
+        } else {
+            emm42SetSpeed(motorB, BACK, -B, 255);
         }
-        else {
-            emm42SetSpeed(motorB, BACK, -B, 1);
-        }
+        lastB = B;
     }
 
     return SUCCESS;
@@ -118,23 +116,21 @@ bool downMotorsSpeedControl() {
 //    D = limit(D, 40, true);
 
     if (C != lastC) {
-        lastC = C;
         if (C >= 0) {
             emm42SetSpeed(motorC, FORWARD, C, 1);
-        }
-        else {
+        } else {
             emm42SetSpeed(motorC, BACK, -C, 1);
         }
+        lastC = C;
     }
 
     if (D != lastD) {
-        lastD = D;
         if (D >= 0) {
             emm42SetSpeed(motorD, FORWARD, D, 1);
-        }
-        else {
+        } else {
             emm42SetSpeed(motorD, BACK, -D, 1);
         }
+        lastD = D;
     }
 
     return SUCCESS;
