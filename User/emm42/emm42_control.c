@@ -1,6 +1,3 @@
-//
-// Created by XuJiang on 2023/5/17.
-//
 #include "main.h"
 #include "emm42.h"
 
@@ -77,16 +74,9 @@ int emm42SetPosition(emm42_motor motor, bool direction, uint16_t speed, uint8_t 
 
     UChar dataBack[3];
     int dataBackLength = 3;
-#ifdef TM4
-    UChar *p=dataBack;
-    for (int i=0; i<dataBackLength; i++){
-        *p = UARTCharGet(*motor.uart);
-        p++;
-    }
-#endif // TM4
-#ifdef STM32
+
     HAL_UART_Receive(motor.uart, (uint8_t *) dataBack, dataBackLength, 1000);
-#endif // STM32
+
     if (dataBack[0] == motor.address && dataBack[1]==0x02 && dataBack[2] == motor.checkByte) {
         if(!wait){
             return SUCCESS;

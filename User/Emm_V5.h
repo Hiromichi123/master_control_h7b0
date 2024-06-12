@@ -5,15 +5,6 @@
 #include "stdbool.h"
 #include "stm32h7xx_hal.h"
 
-/**********************************************************
-***	Emm_V5.0步进闭环控制例程
-***	编写作者：ZHANGDATOU
-***	技术支持：张大头闭环伺服
-***	淘宝店铺：https://zhangdatou.taobao.com
-***	CSDN博客：http s://blog.csdn.net/zhangdatou666
-***	qq交流群：262438510
-**********************************************************/
-
 #define		ABS(x)		((x) > 0 ? (x) : -(x)) 
 
 typedef enum {
@@ -30,7 +21,7 @@ typedef enum {
 	S_FLAG  = 13,			/* 读取使能/到位/堵转状态标志位 */
 	S_Conf  = 14,			/* 读取驱动参数 */
 	S_State = 15,			/* 读取系统状态参数 */
-	S_ORG   = 16,     /* 读取正在回零/回零失败状态标志位 */
+	S_ORG   = 16,     		/* 读取正在回零/回零失败状态标志位 */
 }SysParams_t;
 
 

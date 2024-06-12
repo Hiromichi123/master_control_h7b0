@@ -1,6 +1,3 @@
-//
-// Created by XuJiang on 2023/5/17.
-//
 #include "main.h"
 #include "emm42.h"
 
@@ -17,16 +14,9 @@ int emm42ReadEncoder(emm42_motor motor, uint16_t* dataOfEncoder){
     emmMotorSend(motor, readCommand);
     UChar dataBack[4];
     int dataBackLength=4;
-#ifdef TM4
-    UChar *p=dataBack;
-    for (int i=0; i<dataBackLength; i++){
-        *p = UARTCharGet(*motor.uart);
-        p++;
-    }
-#endif // TM4
-#ifdef STM32
+
     HAL_UART_Receive(motor.uart, (uint8_t *)dataBack, dataBackLength, HAL_MAX_DELAY);
-#endif // STM32
+
     if(dataBack[0] == motor.address && dataBack[3] == motor.checkByte){
         *dataOfEncoder = (dataBack[1] << 8) | dataBack[2];
         return SUCCESS;
